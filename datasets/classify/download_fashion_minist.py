@@ -59,7 +59,7 @@ def get_fashion_mnist_loaders(data_dir, batch_size=64, num_workers=2, resize_siz
     train_loader = DataLoader(
         dataset=train_dataset,
         batch_size=batch_size,
-        shuffle=False,
+        shuffle=False,  # 为了debug方便以及产生对比，将 shuffle 设置为 False
         num_workers=num_workers
     )
 

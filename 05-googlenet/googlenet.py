@@ -9,7 +9,6 @@
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 # 定义 Inception 模块
 class Inception(nn.Module):
