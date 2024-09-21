@@ -1,3 +1,11 @@
+# AlexNet 的关键特点：
+#     深度更深：AlexNet 相对于之前的网络加深了深度，共有 8 个可训练的层（5 个卷积层和 3 个全连接层）。
+#     ReLU 激活函数：引入了 ReLU（Rectified Linear Unit）激活函数，加速了训练过程并缓解了梯度消失问题。
+#     Dropout 正则化：在全连接层中使用 Dropout，减少过拟合，提高模型的泛化能力。
+#     数据增强：通过数据增强（如随机裁剪、翻转）来扩大训练数据集，提高模型的鲁棒性。
+#     GPU 并行训练：AlexNet 利用了 GPU 的并行计算能力，大幅加快了模型的训练速度。
+
+
 import torch
 import torch.nn as nn
 

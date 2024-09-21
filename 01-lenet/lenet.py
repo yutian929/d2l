@@ -1,3 +1,19 @@
+# LeNet框架(需要改进：Sigmoid->ReLU, AvgPool->MaxPool)
+    # Input---b,1,28,28
+    # Conv2D---k5,p2---b,6,28,28
+    # Sigmoid/ReLU
+    # AvgPool---k2,s2---b,6,14,14
+    # Conv2D---k5---b,16,10,10
+    # Sigmoid/ReLU
+    # AvgPool---k2,s2---b,16,5,5
+    # Flatten---b,400
+    # Linear---b,120
+    # Sigmoid/ReLU
+    # Linear---b,84
+    # Sigmoid/ReLU
+    # Linear---b,10
+
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -5,21 +21,6 @@ import torch.nn.functional as F
 class LeNet(nn.Module):
     def __init__(self):
         super(LeNet, self).__init__()
-        
-        # LeNet框架(需要改进：Sigmoid->ReLU, AvgPool->MaxPool)
-        # Input---b,1,28,28
-        # Conv2D---k5,p2---b,6,28,28
-        # Sigmoid/ReLU
-        # AvgPool---k2,s2---b,6,14,14
-        # Conv2D---k5---b,16,10,10
-        # Sigmoid/ReLU
-        # AvgPool---k2,s2---b,16,5,5
-        # Flatten---b,400
-        # Linear---b,120
-        # Sigmoid/ReLU
-        # Linear---b,84
-        # Sigmoid/ReLU
-        # Linear---b,10
         
         # 顺序定义层
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, padding=2)
