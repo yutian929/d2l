@@ -10,7 +10,7 @@ project_root = "/home/yutian/projects/d2l/d2l"
 sys.path.append(project_root)
 
 from markovmlp import MarkovMLP
-from datasets.predict.gennerate_sin_samples import get_sin_dataloaders
+from datasets.sequential.gennerate_sin_samples import get_sin_dataloaders
 from env.cuda import get_device
 
 
