@@ -10,6 +10,8 @@ class SentencePairDataset:
         sentences = self.read_text_file()
         sentences = self.sentences_preprocess_common(sentences)
         sentences_eng, sentences_chn = self.sentences_preprocess_special(sentences)
+        for i in range(1, 11):
+            print(f"{-i}: {sentences_eng[-i]}\t{sentences_chn[-i]}")
 
 
 
@@ -33,15 +35,10 @@ class SentencePairDataset:
     
     def sentence_preprocess(self, sentence):
         # 针对分离出来的原始的eng和chn句子
-        # 使用空格替换不间断空格
-        sentence = sentence.replace('\u202f', ' ').replace('\xa0', ' ')
-        # 在英文单词和标点符号之间插入空格 eg. Hi. -> Hi .
-        sentence = re.sub(r'([a-zA-Z])([.!?,"():;])', r'\1 \2', sentence)
-        # 在中文字符和标点符号之间插入空格 eg. 你好。 -> 你好 。
-        pass
-        # 替换多个空格为单个空格，确保不会出现多余空格
-        sentence = re.sub(r'\s{2,}', ' ', sentence)
-        
+        sentence = sentence.replace('\u202f', ' ').replace('\xa0', ' ')  # 使用空格替换不间断空格
+        sentence = re.sub(r'([.!?,"():;。，！？：；（）“”‘’])', r' \1 ', sentence)  # 在标点符号前后添加空格
+        sentence = re.sub(r'([\u4e00-\u9fff])', r' \1 ', sentence)  # 在中文字符前后添加空格
+        sentence = re.sub(r'\s{2,}', ' ', sentence).strip()  # 替换多个空格为单个空格，确保不会出现多余空格
         return sentence
 
     def read_text_file(self):
@@ -51,4 +48,4 @@ class SentencePairDataset:
 
 
 if __name__ == "__main__":
-    dataset = SentencePairDataset("/home/yutian/projects/d2l/d2l/datasets/sequential/cmn-eng/cmn.txt")
+    dataset = SentencePairDataset("/mnt/zhangyutian/projects/task10_yutian/d2l/d2l/datasets/sequential/cmn-eng/cmn.txt")
