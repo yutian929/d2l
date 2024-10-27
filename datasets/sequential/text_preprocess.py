@@ -187,6 +187,5 @@ if __name__ == '__main__':
 
     # 现在可以使用 dataloader 进行模型训练
     for batch_idx, (inputs, targets) in enumerate(dataloader):
-        # 在这里添加您的训练代码
         print(f'批次 {batch_idx}: 输入形状 {inputs.shape}, 目标形状 {targets.shape}')
         break  # 仅示例，实际训练时可去掉

@@ -1,4 +1,5 @@
 import re
+import jieba
 from collections import Counter
 from torch.utils.data import Dataset, DataLoader
 import torch
@@ -23,7 +24,7 @@ class SentencePairDataset:
         if lang == 'eng':
             return sentence.split()
         elif lang == 'chn':
-            return list(sentence.replace(" ", ""))  # 每个中文字符单独分词，去除多余空格
+            return list(jieba.cut(sentence))  # jieba分词
     
     def build_vocab(self, tokenized_sentences, reserved_tokens):
         """创建词汇表并返回token到索引的映射"""
@@ -48,7 +49,7 @@ class SentencePairDataset:
     def sentence_preprocess(self, sentence):
         sentence = sentence.replace('\u202f', ' ').replace('\xa0', ' ')
         sentence = re.sub(r'([.!?,"():;。，！？：；（）“”‘’])', r' \1 ', sentence)
-        sentence = re.sub(r'([\u4e00-\u9fff])', r' \1 ', sentence)
+        # sentence = re.sub(r'([\u4e00-\u9fff])', r' \1 ', sentence)  # 使用jieba分词，就不用在中文字符之间加空格了
         sentence = re.sub(r'\s{2,}', ' ', sentence).strip()
         return sentence
     
