@@ -138,6 +138,7 @@ def show_batch_images(images, labels, classes, resize_size=None):
 # 示例：使用该函数获取 DataLoader
 if __name__ == '__main__':
     data_dir = '/home/yutian/projects/d2l/d2l/datasets/classify'
+    os.makedirs(data_dir, exist_ok=True)
     batch_size = 64  # 可根据需要调整
     num_workers = 2  # 根据你的CPU核心数调整
     resize_size = (224, 224)  # 调整图像尺寸，例如 (224, 224)。如果不需要调整，设置为 None

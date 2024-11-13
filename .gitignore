@@ -1,2 +1,3 @@
 __pycache__
-datasets/classify/FashionMNIST/raw*
+datasets/classify/*
+!/datasets/classify/download*
